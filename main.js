@@ -7,22 +7,27 @@ var boxes = document.querySelectorAll('.box');
 
 boxes.forEach((element, index) => {
     element.style.backgroundColor = colors[index % colors.length];
-    element.addEventListener('click', () => {
+
+    element.onmouseover = (e) => {
+        document.querySelector('body').style.backgroundColor = element.style.backgroundColor;
+    }
+
+    element.addEventListener('click', (e) => {
         document.querySelector('body').style.backgroundColor = element.style.backgroundColor;
     });
+    
 });
 
-document.getElementById('clockWise').addEventListener('click', () => {
+const rotate = () => {
     document.getElementById('clockWise').style.transform = "rotate(360deg)";
-})
-
-const resetOptions = () => {            
-    document.getElementById('reset').addEventListener('click', () => {
-        setTimeout(function() {
-            document.querySelector('body').style.backgroundColor = "transparent";
-        }, 2000)
-
-    });
 }
 
-resetOptions();
+const resetOptions = () => {            
+    setTimeout(function() {
+        document.querySelector('body').style.backgroundColor = "transparent";
+        window.location.reload();
+    }, 3000)
+}
+
+
+
